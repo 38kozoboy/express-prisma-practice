@@ -11,7 +11,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/users", async (req, res) => {
-  const users = await prisma.user.findMany();
+  const users = await prisma.user.findMany({
+    include: { posts: true },
+  });
   res.json(users);
 });
 
